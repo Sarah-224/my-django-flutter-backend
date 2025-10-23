@@ -132,18 +132,11 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-
-STATIC_URL = 'static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# Static files settings
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# الإعدادات الأساسية للملفات الثابتة (Static Files)
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# استخدم Whitenoise لخدمة الملفات الثابتة في الإنتاج
-# يجب إضافة 'whitenoise.middleware.WhiteNoiseMiddleware' في MIDDLEWARE
+# هذا السطر مهم لبعض الأخطاء:
+# WhiteNoise configuration (إعداد Whitenoise)
+if not DEBUG:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
