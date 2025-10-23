@@ -15,8 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include  # تأكد من استيراد include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # ***** أضف هذا السطر لربط مسار API الرئيسي *****
+    path('api/', include('my_flutter_app.urls')),
+    # **********************************************
 ]
